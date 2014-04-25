@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GlobalBehavior : MonoBehaviour {
+public class GlobalBehaviorLevel2 : MonoBehaviour {
 	
 	#region World Bound support
 	private Bounds mWorldBound;  // this is the world bound
@@ -15,8 +15,7 @@ public class GlobalBehavior : MonoBehaviour {
 	public bool paused = true;
 	private const float PAUSE_INTERVAL = 0.5f;
 	private float previous_pause = 0f;
-	private string curGame;
-//	GameObject background = null;
+	//GameObject background = null;
 	#endregion
 
 	#region  support runtime enemy creation
@@ -30,30 +29,24 @@ public class GlobalBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		curGame = Application.loadedLevelName;
-		if(curGame.Contains("level2"))
-			MAX_SHIPS = 150;
-		else
-			MAX_SHIPS = 20;
-
 		#region world bound support
 		mMainCamera = Camera.main;
 		mWorldBound = new Bounds(Vector3.zero, Vector3.one);
 		UpdateWorldWindowBound();
 
 		#endregion
-//		if(background == null){
-//			background = GameObject.Find("BackgroundImage");
-//		}
+		//if(background == null){
+		//	background = GameObject.Find("BackgroundImage");
+		//	background.transform.position = new Vector3(Screen.width*2, Screen.height*2, 0.0f);
+	//	}
 		#region initialize enemy spawning
 		if (null == mEnemyToSpawn) 
 			mEnemyToSpawn = Resources.Load("Prefabs/UFO") as GameObject;
 		#endregion
 
-		if(curGame.Contains("level2"))
-		for(int i = 0; i < 50; i++){
-			GameObject e = (GameObject) Instantiate(mEnemyToSpawn);
-		}
+	//	for(int i = 0; i < 50; i++){
+	//		GameObject e = (GameObject) Instantiate(mEnemyToSpawn);
+	//	}
 	}
 	
 	// Update is called once per frame
