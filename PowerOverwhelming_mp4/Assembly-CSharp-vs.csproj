@@ -53,12 +53,12 @@
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\InteractiveControl.cs" />
      <Compile Include="Assets\Scripts\LaserBehavior.cs" />
-     <Compile Include="Assets\Scripts\Level1Game\GlobalBehaviorLevel1.cs" />
-     <Compile Include="Assets\Scripts\Level1Game\Level1GameState.cs" />
-     <Compile Include="Assets\Scripts\Level2Game\GlobalBehaviorLevel2.cs" />
-     <Compile Include="Assets\Scripts\Level2Game\Level2GameState.cs" />
      <Compile Include="Assets\Scripts\MenuLevelStuff\FirstGameManager.cs" />
      <Compile Include="Assets\Scripts\MenuLevelStuff\LoadLevelOnMouse.cs" />
+     <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level1\GlobalBehaviorLevel1.cs" />
+     <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level1\Level1GameState.cs" />
+     <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level2\GlobalBehaviorLevel2.cs" />
+     <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level2\Level2GameState.cs" />
      <Compile Include="Assets\Scripts\WorldBehavior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
