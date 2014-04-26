@@ -1,1 +1,3 @@
-this is the first line in the README
+The first collaborative project of CSS385.
+
+The main purpose of this assignment is for you to begin practicing team work, that, and a little more global level depth on working with Unity3d. By "global level depth" I am referring to packaging, levels, audios, etc, features you must include but not really local to any game object behavior. The main purpose though, is, your team should work together and understand how to share resources for your game. Some of the requirements are designed to make you guys may be argue a little, e.g., what are appropriate textures for your gameObject, etc. I want each team to negotiate what to include what the game should look like, and in general start working out the bugs of working together.
