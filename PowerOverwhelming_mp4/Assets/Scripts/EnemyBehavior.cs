@@ -24,6 +24,12 @@ public class EnemyBehavior : MonoBehaviour {
 	private float STUN_INTERVAL = 5.0f;
 	private float previous_stun = 0.0f;
 	private EnemyState myState;
+
+	// James's Variables
+	private Vector3 away;
+	private float rotateSpeed = 90 / 2f;
+	// End of James's Variables
+
 			bool turned = false;
 	GlobalBehavior globalBehavior = null;
 		// what is the change of enemy flying towards the world center after colliding with world bound
@@ -57,7 +63,7 @@ public class EnemyBehavior : MonoBehaviour {
 			tempY += 10*Math.Sign(tempY);
 		transform.position = new Vector3 (UnityEngine.Random.Range (-415, 415), UnityEngine.Random.Range (-185, 185), 0.0f);
 		initial = false;
-		
+		away = new Vector3 ();
 	}
 
 	// Update is called once per frame
@@ -74,9 +80,7 @@ public class EnemyBehavior : MonoBehaviour {
 
 			float difX = Math.Abs(transform.position.x - hero.transform.position.x);
 			float difY = Math.Abs(transform.position.y - hero.transform.position.y);
-			if(difX  < 30 && difY < 30 && myState != EnemyState.InvadeState){
-				myState = EnemyState.RunState;
-			}
+
 
 			switch(myState){
 			case EnemyState.FreeState:
@@ -93,21 +97,24 @@ public class EnemyBehavior : MonoBehaviour {
 
 				if (status != GlobalBehavior.WorldBoundStatus.Inside)
 					NewDirection ();
+
+				if (Run ())
+					myState = EnemyState.RunState;
 				
 				break;
 			case EnemyState.RunState:
-				if(!turned){
-					transform.up = hero.transform.up;
-					turned = true;
+				away = this.transform.position - GameObject.Find ("mHero").GetComponent<Transform> ().position;
+				if (Vector3.Cross(away, this.transform.up).magnitude > 0.001f) {
+					float dir = Vector3.Cross(this.transform.up, away).normalized.z;
+					transform.Rotate(Vector3.forward, dir * rotateSpeed * Time.smoothDeltaTime);
 				}
 				transform.position += (mSpeed * Time.smoothDeltaTime) * transform.up;
 				if (null != renderer) {
 					s = Resources.Load("Textures/UFO_Run", typeof(Sprite)) as Sprite;
 					renderer.sprite = s;
 				}
-				if(difX  > 60 && difY > 60){
+				if (!Run ())
 					myState = EnemyState.FreeState;
-				}
 				break;
 			case EnemyState.StunnedState:
 
@@ -250,8 +257,21 @@ public class EnemyBehavior : MonoBehaviour {
 		transform.up = newDir;
 	
 	}
+
 	public void toggle_pause(){
 		paused = !paused;
+	}
+
+	private bool Run() {
+		Transform heroTransform = GameObject.Find ("mHero").GetComponent<Transform>();
+		Vector3 heroPos = heroTransform.position;
+		Vector3 heroDir = heroTransform.up;
+		Vector3 heroToEnemy = this.transform.position - heroPos;
+		float dist = Vector3.Magnitude (heroToEnemy);
+		heroDir.Normalize ();
+		heroToEnemy.Normalize ();
+		float theta = Mathf.Acos (Vector3.Dot (heroDir, heroToEnemy)) * Mathf.Rad2Deg;
+		return theta < 50f && dist < 100f;
 	}
 
 }
