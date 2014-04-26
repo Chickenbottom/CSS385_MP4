@@ -6,11 +6,11 @@ public class InteractiveControl : MonoBehaviour {
 	public GameObject mProjectile = null;
 	private const float LASER_INTERVAL = 0.10f;
 	private float previous_laser = 0;
-	private float kHeroSpeed = 20f;
+	private float kHeroSpeed = 50f;
 	private float speed_interval = 10f;
-	private const float SPEED_MAX = 60f;
-	private const float SPEED_MIN = 20f;
-	private float kHeroRotateSpeed = 90/2f; // 90-degrees in 2 seconds
+	private const float SPEED_MAX = 100f;
+	private const float SPEED_MIN = 50f;
+	private float kHeroRotateSpeed = 90; // 90-degrees in 2 seconds
 	public int laser_total = 0;
 	private float radiusX;
 	private float radiusY;

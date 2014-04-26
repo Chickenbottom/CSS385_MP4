@@ -16,6 +16,7 @@ public class GlobalBehavior : MonoBehaviour {
 	private const float PAUSE_INTERVAL = 0.5f;
 	private float previous_pause = 0f;
 	private string curGame;
+
 //	GameObject background = null;
 	#endregion
 
@@ -34,7 +35,7 @@ public class GlobalBehavior : MonoBehaviour {
 		if(curGame.Contains("level2"))
 			MAX_SHIPS = 150;
 		else
-			MAX_SHIPS = 20;
+			MAX_SHIPS = 5;
 
 		#region world bound support
 		mMainCamera = Camera.main;
@@ -71,6 +72,11 @@ public class GlobalBehavior : MonoBehaviour {
 		GameObject remainingEnemyText = GameObject.Find("EnemyGUIText");
 		GUIText gui = remainingEnemyText.GetComponent<GUIText>();
 		gui.text = "Remaining Enemy Ships: " + (MAX_SHIPS - destroyed_ships).ToString();
+
+		if (curGame.Contains("level1") && destroyed_ships > 4) {
+			Application.LoadLevel ("PowerOverwhelming_mp4_level2");
+		}
+
 	}
 
 	
