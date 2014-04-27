@@ -17,7 +17,10 @@ public class MotherBehavior : MonoBehaviour
 		if (status != GlobalBehavior.WorldBoundStatus.Inside) 
 			x_dir = -x_dir;
 		
-
+		if(shields <= 0.0f)
+		{
+			this.renderer.enabled = false;
+		}
 	}
 	void OnTriggerEnter2D(Collider2D other)
 	{
