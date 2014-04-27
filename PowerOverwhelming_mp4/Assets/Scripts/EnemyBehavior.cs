@@ -229,6 +229,7 @@ public class EnemyBehavior : MonoBehaviour {
 				//	mblast.transform.position = transform.position;
 				//	GameObject b = (GameObject) Instantiate(mblast);
 				//}
+				Instantiate(Resources.Load("Prefabs/explosion"), transform.position, new Quaternion());
 				Destroy(gameObject);
 				globalBehavior.destroyShip();
 				return;
