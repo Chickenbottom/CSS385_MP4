@@ -34,8 +34,11 @@ public class InteractiveControl : MonoBehaviour {
 			GlobalBehavior.WorldBoundStatus status =
 				globalBehavior.ObjectCollideWorldBound(GetComponent<Renderer>().bounds);
 			if (status != GlobalBehavior.WorldBoundStatus.Inside) {
-				//transform.position -= move;
-				keep_within(status, move);
+				if (status == GlobalBehavior.WorldBoundStatus.CollideTop && move.y > 0 ||
+				    status == GlobalBehavior.WorldBoundStatus.CollideBottom && move.y < 0 ||
+				    status == GlobalBehavior.WorldBoundStatus.CollideRight && move.x > 0 ||
+				    status == GlobalBehavior.WorldBoundStatus.CollideLeft && move.x < 0)
+					transform.position -= move;
 			}
 			if (Input.GetAxis ("Fire1") > 0f) { // this is Left-Control
 				if(Time.realtimeSinceStartup - previous_laser > LASER_INTERVAL){
@@ -65,7 +68,7 @@ public class InteractiveControl : MonoBehaviour {
 	public void destroy_laser(){
 		laser_total--;
 	}
-	public void keep_within(GlobalBehavior.WorldBoundStatus status, Vector3 move){
+	/*public void keep_within(GlobalBehavior.WorldBoundStatus status, Vector3 move){
 		transform.position -= move;
 		switch(status){
 		case GlobalBehavior.WorldBoundStatus.CollideBottom :
@@ -81,5 +84,5 @@ public class InteractiveControl : MonoBehaviour {
 			transform.position.Set(transform.position.x, (Screen.height - radiusY), 0.0f);
 			break;
 		}
-	}
+	}*/
 }
