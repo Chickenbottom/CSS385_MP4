@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level1\Level1GameState.cs" />
      <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level2\GlobalBehaviorLevel2.cs" />
      <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level2\Level2GameState.cs" />
+     <Compile Include="Assets\Scripts\PowerOverwhelming_mp4_level2\MotherBehavior.cs" />
      <Compile Include="Assets\Scripts\WorldBehavior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
