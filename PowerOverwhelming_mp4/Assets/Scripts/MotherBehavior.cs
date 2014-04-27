@@ -13,7 +13,7 @@ public class MotherBehavior : MonoBehaviour
 		globalBehavior = GameObject.Find ("GameManager").GetComponent<GlobalBehavior> ();
 		if(mProjectile == null)
 			mProjectile = Resources.Load ("Prefabs/deathRay") as GameObject;
-		earth = new Vector3(1,1,0);
+		earth = new Vector3(0.01,0.01,0);
 	}
 	public void Update(){
 
