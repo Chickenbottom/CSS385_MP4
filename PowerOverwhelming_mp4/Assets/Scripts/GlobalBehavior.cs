@@ -34,7 +34,9 @@ public class GlobalBehavior : MonoBehaviour {
 	// spwaning enemy ...
 	public GameObject mEnemyToSpawn = null;
 	#endregion
-	
+
+	private GameObject mContinueMenu;
+
 	// Use this for initialization
 	void Start () {	
 		#region world bound support
@@ -46,6 +48,7 @@ public class GlobalBehavior : MonoBehaviour {
 
 		mGameState = GameManager.TheGameState();
 		mPauseMenu = GameObject.Find("PauseMenu");
+		mContinueMenu = GameObject.Find("ContinueMenu");
 		
 		#region initialize enemy spawning
 		if (null == mEnemyToSpawn) 
@@ -58,6 +61,7 @@ public class GlobalBehavior : MonoBehaviour {
 		#endregion
 		
 		mPauseMenu.SetActive(paused);
+		mContinueMenu.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -82,7 +86,13 @@ public class GlobalBehavior : MonoBehaviour {
 		gui.text = "Score: " + score.ToString();
 
 		if (mDestroyedShips >= mSpawnedShips) { // win condition, no remaining enemies
-			mGameState.AdvanceLevel();
+			mContinueMenu.SetActive (true);
+			GUIText victoryText = GameObject.Find("txtVictoryMessage").GetComponent<GUIText>();
+
+			if (worldSheild.getShieldStatus() > 0)
+				victoryText.text = "You Win!";
+			else 
+				victoryText.text = "You Lose!";
 		}
 	}
 
