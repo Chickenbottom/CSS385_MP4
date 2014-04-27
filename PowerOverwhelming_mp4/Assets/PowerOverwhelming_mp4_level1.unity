@@ -379,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3239fa3e199b7724380ff54c39c2d9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuButton: 1
 --- !u!61 &403331268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -404,7 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3239fa3e199b7724380ff54c39c2d9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuButton: 1
 --- !u!1 &511399699
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3239fa3e199b7724380ff54c39c2d9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuButton: 0
 --- !u!61 &1057086355
 BoxCollider2D:
   m_ObjectHideFlags: 0
