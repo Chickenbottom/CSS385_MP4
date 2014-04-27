@@ -712,7 +712,7 @@ GUIText:
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4287045392
+    rgba: 4282245915
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1001 &875478626
@@ -1344,6 +1344,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13200002, guid: e57618ef4c6607146822a761bcbc06eb, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4293349930
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200000, guid: e57618ef4c6607146822a761bcbc06eb, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4282245915
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e57618ef4c6607146822a761bcbc06eb, type: 2}
   m_RootGameObject: {fileID: 2014704957}
@@ -1386,7 +1394,7 @@ GUIText:
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4287045392
+    rgba: 4293349930
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!4 &1843834489
