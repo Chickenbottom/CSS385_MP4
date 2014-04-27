@@ -6,10 +6,11 @@ public class MotherBehavior : MonoBehaviour
 	float x_dir = 1;
 	float shields = 25;
 	public void Start(){
+		globalBehavior = GameObject.Find ("GameManager").GetComponent<GlobalBehavior> ();
 	}
 	public void Update(){
 
-		transform.position += new Vector3(1, 0.0f,0.0f);
+		transform.position += new Vector3(x_dir, 0.0f,0.0f);
 		
 		GlobalBehavior.WorldBoundStatus status =
 			globalBehavior.ObjectCollideWorldBound(GetComponent<Renderer>().bounds);
@@ -22,11 +23,11 @@ public class MotherBehavior : MonoBehaviour
 	{
 		if(other.name == "alienLaser(Clone)")
 		{
-			Destroy(other);
+			Destroy(other.gameObject);
 		}
 		else if(other.name == "laser(Clone)")
 		{
-			Destroy(other);
+			Destroy(other.gameObject);
 			shields--;
 		}
 	}
