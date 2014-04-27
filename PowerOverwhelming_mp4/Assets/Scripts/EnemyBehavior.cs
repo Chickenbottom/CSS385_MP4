@@ -240,7 +240,6 @@ public class EnemyBehavior : MonoBehaviour {
 				hit = true;
 			}
 		}
-
 	}
 	private void invade()
 	{
@@ -250,8 +249,6 @@ public class EnemyBehavior : MonoBehaviour {
 		// this is vector that will take us back to world center
 		v.Normalize();
 		Vector2 vn = new Vector2(v.y, -v.x); // this is a direciotn that is perpendicular to V
-
-		
 		Vector2 newDir = v + vn;
 		newDir.Normalize();
 		transform.up = newDir;
