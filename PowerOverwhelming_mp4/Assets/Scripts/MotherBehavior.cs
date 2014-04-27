@@ -10,17 +10,21 @@ public class MotherBehavior : MonoBehaviour
 	float SHOT_INTERVAL = 5.0f;
 	GameObject mBlast = null;
 	Vector3 earth;
+
+
 	public void Start(){
 		globalBehavior = GameObject.Find ("GameManager").GetComponent<GlobalBehavior> ();
 		if(mProjectile == null)
 			mProjectile = Resources.Load ("Prefabs/deathRay") as GameObject;
-		earth = new Vector3(0.01f,0.01f,0.0f);
 		if(mBlast == null)
-		{
 			mBlast = Resources.Load("Prefabs/blast") as GameObject;
-		}
+		earth = new Vector3(0.01f,0.01f,0.0f);
+		
 	}
 	public void Update(){
+
+		if (globalBehavior.getPaused())
+			return;
 		
 		transform.position += new Vector3(x_dir, 0.0f,0.0f);
 		
