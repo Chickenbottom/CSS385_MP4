@@ -224,6 +224,8 @@ GameObject:
   - 4: {fileID: 136502576}
   - 212: {fileID: 136502575}
   - 114: {fileID: 136502574}
+  - 50: {fileID: 136502578}
+  - 61: {fileID: 136502577}
   m_Layer: 0
   m_Name: Mother
   m_TagString: Untagged
@@ -277,6 +279,32 @@ Transform:
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &136502577
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136502573}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 6, y: 3}
+  m_Center: {x: 0, y: 0}
+--- !u!50 &136502578
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136502573}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1 &147546424
 GameObject:
   m_ObjectHideFlags: 0
