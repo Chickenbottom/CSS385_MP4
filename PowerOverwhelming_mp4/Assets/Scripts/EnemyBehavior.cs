@@ -203,7 +203,7 @@ public class EnemyBehavior : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log ("Hit!");
+		//Debug.Log ("Hit!");
 		GlobalBehavior gbehavior = GameObject.Find("GameManager").GetComponent<GlobalBehavior>();
 		
 		if (other.gameObject.name == "mShield" && !shieldsDown) 

@@ -5,7 +5,8 @@ public class MenuButtonBehavior : MonoBehaviour {
 
 	public enum MenuButtonState {
 		kMenu,
-		kResume
+		kResume,
+		kQuit
 	}
 	
 	public MenuButtonState MenuButton;
@@ -30,17 +31,30 @@ public class MenuButtonBehavior : MonoBehaviour {
 		case (MenuButtonState.kResume):
 			ResumeGame ();
 			break;
+			
+		case (MenuButtonState.kQuit):
+			QuitGame ();
+			break;
 		}
+	}
+	
+	public void QuitGame()
+	{
+		Debug.Log ("Quit");
 	}
 	
 	public void ResumeGame()
 	{
+		Debug.Log ("Resume");
 		GlobalBehavior currentLevel = GameObject.Find ("GameManager").GetComponent<GlobalBehavior>();
+		if (currentLevel == null)
+			Debug.Log ("null level");
 		currentLevel.ResumeGame();
 	}
 	
 	public void LoadMenu()
 	{
+		Debug.Log ("Load");
 		GameState gameState = GameManager.TheGameState();
 		gameState.LoadGameLevel(GameState.GameLevel.kMenu);
 	}
