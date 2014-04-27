@@ -1,0 +1,8 @@
+/EXE
+/Temp
+/obj
+/library
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
