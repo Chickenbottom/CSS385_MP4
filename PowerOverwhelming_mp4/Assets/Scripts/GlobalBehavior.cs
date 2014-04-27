@@ -76,9 +76,10 @@ public class GlobalBehavior : MonoBehaviour {
 				PauseGame();
 		}
 		
-		GameObject remainingEnemyText = GameObject.Find("EnemyGUIText");
+		GameObject remainingEnemyText = GameObject.Find("txtScore");
 		GUIText gui = remainingEnemyText.GetComponent<GUIText>();
-		gui.text = "Remaining Enemy Ships: " + (mSpawnedShips - mDestroyedShips).ToString();
+		int score = mGameState.Score;
+		gui.text = "Score: " + score.ToString();
 
 		if (mDestroyedShips >= mSpawnedShips) { // win condition, no remaining enemies
 			mGameState.AdvanceLevel();
@@ -174,6 +175,7 @@ public class GlobalBehavior : MonoBehaviour {
 	}
 	#endregion
 	public void destroyShip(){
+		mGameState.AddToScore (1);
 		mDestroyedShips++;	
 	}
 	public bool getPaused(){
