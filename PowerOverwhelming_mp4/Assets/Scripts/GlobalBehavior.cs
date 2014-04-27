@@ -50,8 +50,12 @@ public class GlobalBehavior : MonoBehaviour {
 			mEnemyToSpawn = Resources.Load("Prefabs/UFO") as GameObject;
 		#endregion
 
+		int initial_ships = 0;
+		if(curGame.Contains("level1"))
+		   initial_ships = MAX_SHIPS;
 		if(curGame.Contains("level2"))
-		for(int i = 0; i < 50; i++){
+			initial_ships = cur_ships;
+		for(int i = 0; i < initial_ships; i++){
 			GameObject e = (GameObject) Instantiate(mEnemyToSpawn);
 		}
 	}
