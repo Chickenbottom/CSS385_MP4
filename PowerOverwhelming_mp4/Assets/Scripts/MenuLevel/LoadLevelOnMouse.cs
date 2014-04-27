@@ -2,8 +2,10 @@
 using System.Collections;
 
 public class LoadLevelOnMouse : MonoBehaviour {
-
-	public string levelName = null;
+	
+	public GameState.GameLevel mGameLevel;
+	
+	
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +18,8 @@ public class LoadLevelOnMouse : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		Debug.Log (levelName);
-		Application.LoadLevel (levelName);
+		GameState gameState = GameManager.TheGameState();
+		gameState.LoadGameLevel(mGameLevel);
 	}
 
 }

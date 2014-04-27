@@ -9,9 +9,14 @@ public class GlobalBehavior : MonoBehaviour {
 	private Vector2 mWorldMax;
 	private Vector2 mWorldCenter;
 	private Camera mMainCamera;
+	
+	private GameState mGameState;
+	
+	private int mSpawnedShips;
+	private int mDestroyedShips;
+	
 	private int MAX_SHIPS = 150;
 	private int cur_ships = 50;		//start with 50
-	public int destroyed_ships = 0;
 	public bool paused = true;
 	private const float PAUSE_INTERVAL = 0.5f;
 	private float previous_pause = 0f;
@@ -30,30 +35,26 @@ public class GlobalBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-
-		curGame = Application.loadedLevelName;
-		if(curGame.Contains("level2"))
-			MAX_SHIPS = 150;
-		else
-			MAX_SHIPS = 5;
-
+		
+		
 		#region world bound support
 		mMainCamera = Camera.main;
 		mWorldBound = new Bounds(Vector3.zero, Vector3.one);
 		UpdateWorldWindowBound();
 
 		#endregion
-//		if(background == null){
-//			background = GameObject.Find("BackgroundImage");
-//		}
+
+		mGameState = GameManager.TheGameState();
+		
 		#region initialize enemy spawning
 		if (null == mEnemyToSpawn) 
 			mEnemyToSpawn = Resources.Load("Prefabs/UFO") as GameObject;
-		#endregion
-
-		for(int i = 0; i < MAX_SHIPS; i++) {
+		
+		mSpawnedShips = mGameState.NumEnemiesInLevel();
+		for(int i = 0; i < mSpawnedShips; i++) {
 			GameObject e = (GameObject) Instantiate(mEnemyToSpawn);
 		}
+		#endregion
 	}
 	
 	// Update is called once per frame
@@ -62,7 +63,7 @@ public class GlobalBehavior : MonoBehaviour {
 		
 		if (worldSheild.getShieldStatus() > 0 && cur_ships < MAX_SHIPS && !paused) 
 		{
-			SpawnAnEnemy();	
+			//SpawnAnEnemy();	
 		}
 
 		if (Input.GetKeyUp(KeyCode.Space)) {
@@ -71,12 +72,11 @@ public class GlobalBehavior : MonoBehaviour {
 			}
 		GameObject remainingEnemyText = GameObject.Find("EnemyGUIText");
 		GUIText gui = remainingEnemyText.GetComponent<GUIText>();
-		gui.text = "Remaining Enemy Ships: " + (MAX_SHIPS - destroyed_ships).ToString();
+		gui.text = "Remaining Enemy Ships: " + (mSpawnedShips - mDestroyedShips).ToString();
 
-		if (curGame.Contains("level1") && destroyed_ships > 4) {
-			Application.LoadLevel ("PowerOverwhelming_mp4_level2");
+		if (mDestroyedShips >= mSpawnedShips) { // win condition, no remaining enemies
+			mGameState.AdvanceLevel();
 		}
-
 	}
 
 	
@@ -154,7 +154,7 @@ public class GlobalBehavior : MonoBehaviour {
 	}
 	#endregion
 	public void destroyShip(){
-		destroyed_ships++;	
+		mDestroyedShips++;	
 	}
 	public bool getPaused(){
 		return paused;
