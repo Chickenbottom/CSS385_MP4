@@ -8,12 +8,17 @@ public class MotherBehavior : MonoBehaviour
 	float shields = 25;
 	float previous_shot = 0.0f;
 	float SHOT_INTERVAL = 5.0f;
+	GameObject mBlast = null;
 	Vector3 earth;
 	public void Start(){
 		globalBehavior = GameObject.Find ("GameManager").GetComponent<GlobalBehavior> ();
 		if(mProjectile == null)
 			mProjectile = Resources.Load ("Prefabs/deathRay") as GameObject;
 		earth = new Vector3(0.01f,0.01f,0.0f);
+		if(mBlast == null)
+		{
+			mBlast = Resources.Load("Prefabs/blast") as GameObject;
+		}
 	}
 	public void Update(){
 		
@@ -26,7 +31,10 @@ public class MotherBehavior : MonoBehaviour
 		
 		if(shields <= 0.0f)
 		{
-			this.renderer.enabled = false;
+			mBlast.transform.position = transform.position;			
+			Destroy(this.gameObject);
+			GameObject b = (GameObject) Instantiate(mBlast);		
+			
 		}
 		
 		if(Time.realtimeSinceStartup - previous_shot > SHOT_INTERVAL){

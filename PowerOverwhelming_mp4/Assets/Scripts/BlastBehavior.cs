@@ -47,7 +47,7 @@ public class BlastBehavior : MonoBehaviour
 
 	IEnumerator BlastFunction() {
 		if(mBlast != null){
-			yield return new WaitForSeconds(3.5f);
+			yield return new WaitForSeconds(5.0f);
 			Destroy(mBlast);
 		}
 	}

@@ -226,8 +226,8 @@ public class EnemyBehavior : MonoBehaviour {
 			// Destroy(this.gameObject);
 			if(hit3){
 				//if(show_blast){
-					mblast.transform.position = transform.position;
-					GameObject b = (GameObject) Instantiate(mblast);
+				//	mblast.transform.position = transform.position;
+				//	GameObject b = (GameObject) Instantiate(mblast);
 				//}
 				Destroy(gameObject);
 				globalBehavior.destroyShip();
