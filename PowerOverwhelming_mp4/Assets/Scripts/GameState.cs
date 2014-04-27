@@ -4,13 +4,21 @@ using System.Collections;
 public class GameState : MonoBehaviour{
 	private GameLevel mGameLevel;
 	private static int[] mNumEnemies;
+
+	public int Score { get { return mScore; } }
+	private int mScore = 0;
 	
 	public enum GameLevel {
 		kMenu = 0,
 		kLevel1 = 1,
 		kLevel2 = 2
 	}
-	
+
+	public void AddToScore(int value)
+	{
+		mScore += value;
+	}
+
 	public int NumEnemiesInLevel()
 	{
 		return mNumEnemies[(int)mGameLevel];
