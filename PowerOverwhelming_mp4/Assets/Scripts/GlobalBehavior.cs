@@ -21,6 +21,8 @@ public class GlobalBehavior : MonoBehaviour {
 	private const float PAUSE_INTERVAL = 0.5f;
 	private float previous_pause = 0f;
 	private string curGame;
+	
+	private GameObject mPauseMenu;
 
 //	GameObject background = null;
 	#endregion
@@ -34,9 +36,7 @@ public class GlobalBehavior : MonoBehaviour {
 	#endregion
 	
 	// Use this for initialization
-	void Start () {
-		
-		
+	void Start () {	
 		#region world bound support
 		mMainCamera = Camera.main;
 		mWorldBound = new Bounds(Vector3.zero, Vector3.one);
@@ -45,6 +45,7 @@ public class GlobalBehavior : MonoBehaviour {
 		#endregion
 
 		mGameState = GameManager.TheGameState();
+		mPauseMenu = GameObject.Find("PauseMenu");
 		
 		#region initialize enemy spawning
 		if (null == mEnemyToSpawn) 
@@ -55,6 +56,8 @@ public class GlobalBehavior : MonoBehaviour {
 			GameObject e = (GameObject) Instantiate(mEnemyToSpawn);
 		}
 		#endregion
+		
+		mPauseMenu.SetActive(paused);
 	}
 	
 	// Update is called once per frame
@@ -67,9 +70,12 @@ public class GlobalBehavior : MonoBehaviour {
 		}
 
 		if (Input.GetKeyUp(KeyCode.Space)) {
-			paused = !paused;
-			previous_pause = Time.realtimeSinceStartup;
-			}
+			if (paused)
+				ResumeGame();
+			else 
+				PauseGame();
+		}
+		
 		GameObject remainingEnemyText = GameObject.Find("EnemyGUIText");
 		GUIText gui = remainingEnemyText.GetComponent<GUIText>();
 		gui.text = "Remaining Enemy Ships: " + (mSpawnedShips - mDestroyedShips).ToString();
@@ -79,6 +85,20 @@ public class GlobalBehavior : MonoBehaviour {
 		}
 	}
 
+	
+	public void PauseGame()
+	{
+		paused = true;
+		previous_pause = Time.realtimeSinceStartup;
+		mPauseMenu.SetActive(paused);
+	}
+	
+	public void ResumeGame()
+	{
+		paused = false;
+		previous_pause = Time.realtimeSinceStartup;
+		mPauseMenu.SetActive(paused);
+	}
 	
 	#region Game Window World size bound support
 	public enum WorldBoundStatus {

@@ -33,6 +33,21 @@ public class GameState : MonoBehaviour{
 		}
 	}
 	
+	public string GetLevelName()
+	{
+		switch (mGameLevel) {
+		case(GameLevel.kLevel1):
+			return "Level 1";
+			break;
+		case(GameLevel.kLevel2):
+			return "Level 2";
+			break;
+		default:
+			return "";
+			break;
+		}
+	}
+	
 	public void AdvanceLevel()
 	{
 		GameLevel level;
