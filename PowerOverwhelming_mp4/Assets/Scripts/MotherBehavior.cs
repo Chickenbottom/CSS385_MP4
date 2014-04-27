@@ -13,10 +13,10 @@ public class MotherBehavior : MonoBehaviour
 		globalBehavior = GameObject.Find ("GameManager").GetComponent<GlobalBehavior> ();
 		if(mProjectile == null)
 			mProjectile = Resources.Load ("Prefabs/deathRay") as GameObject;
-		earth = new Vector3(1,1,0);
+		earth = new Vector3(0.01f,0.01f,0.0f);
 	}
 	public void Update(){
-
+		
 		transform.position += new Vector3(x_dir, 0.0f,0.0f);
 		
 		GlobalBehavior.WorldBoundStatus status =
@@ -28,7 +28,7 @@ public class MotherBehavior : MonoBehaviour
 		{
 			this.renderer.enabled = false;
 		}
-
+		
 		if(Time.realtimeSinceStartup - previous_shot > SHOT_INTERVAL){
 			GameObject e = Instantiate(mProjectile) as GameObject;
 			LaserBehavior laser = e.GetComponent<LaserBehavior>(); // Shows how to get the script from GameObject

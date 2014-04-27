@@ -4,8 +4,9 @@ using System.Collections;
 public class WorldBehavior : MonoBehaviour
 {
 	const int total_shields = 100;
+	const int deathray = 10;
 	int shield = total_shields;
-
+	
 	public GUIStyle progress_empty;
 	public GUIStyle progress_full;
 	
@@ -39,7 +40,7 @@ public class WorldBehavior : MonoBehaviour
 		//the player's health
 		barDisplay = shield/total_shields;
 	}
-
+	
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.name == "laser(Clone)") 
@@ -48,32 +49,37 @@ public class WorldBehavior : MonoBehaviour
 		{
 			Destroy(other.gameObject);
 			shield--;
-			if(shield <= total_shields/2)
-			{
-				SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-				if (null != renderer) {
-					Sprite s = Resources.Load("Textures/EarthShield50", typeof(Sprite)) as Sprite;
-					renderer.sprite = s;
-				}
-			}
-			if(shield <= 0)
-			{
-				renderer.enabled = false;	
-				EnemyBehavior invade = GameObject.Find ("UFO(Clone)").GetComponent<EnemyBehavior>();
-				if(invade != null){
-					SpriteRenderer myWorld = GameObject.Find("mWorld").GetComponent<SpriteRenderer>();
-					//SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-					Sprite s = Resources.Load("Textures/World_Invaded", typeof(Sprite)) as Sprite;
-					myWorld.sprite = s;
-				}
-			
+		}
+		if(other.gameObject.name == "deathRay(Clone)")
+		{
+			Destroy(other.gameObject);
+			shield -= deathray;
+		}
+		if(shield <= total_shields/2)
+		{
+			SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+			if (null != renderer) {
+				Sprite s = Resources.Load("Textures/EarthShield50", typeof(Sprite)) as Sprite;
+				renderer.sprite = s;
 			}
 		}
+		if(shield <= 0)
+		{
+			renderer.enabled = false;	
+			EnemyBehavior invade = GameObject.Find ("UFO(Clone)").GetComponent<EnemyBehavior>();
+			if(invade != null){
+				SpriteRenderer myWorld = GameObject.Find("mWorld").GetComponent<SpriteRenderer>();
+				//SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+				Sprite s = Resources.Load("Textures/World_Invaded", typeof(Sprite)) as Sprite;
+				myWorld.sprite = s;
+			}
+			
+		}	
 	}
 	public int getShieldStatus()
 	{
 		return shield;
 	}
-
+	
 }
 
