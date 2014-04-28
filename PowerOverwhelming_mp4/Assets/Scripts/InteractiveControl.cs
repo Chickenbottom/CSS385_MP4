@@ -25,6 +25,13 @@ public class InteractiveControl : MonoBehaviour {
 	
 	// Update is called once per fram
 	void Update () {
+
+		if (Input.GetAxis("Vertical") != 0) {
+			GetComponent<AudioSource>().mute = false;
+		} else {
+			GetComponent<AudioSource>().mute = true;
+		}
+
 		GlobalBehavior globalBehavior = GameObject.Find ("GameManager").GetComponent<GlobalBehavior> ();
 		if (!globalBehavior.getPaused()){
 			move = Input.GetAxis ("Vertical")  * transform.up * (kHeroSpeed * Time.smoothDeltaTime);
