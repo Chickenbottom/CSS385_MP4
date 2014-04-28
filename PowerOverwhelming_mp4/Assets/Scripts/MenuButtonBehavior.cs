@@ -5,7 +5,8 @@ public class MenuButtonBehavior : MonoBehaviour {
 
 	public enum MenuButtonState {
 		kMenu,
-		kResume
+		kResume,
+		kQuit
 	}
 	
 	public MenuButtonState MenuButton;
@@ -23,6 +24,9 @@ public class MenuButtonBehavior : MonoBehaviour {
 	void OnMouseUp() 
 	{
 		switch (MenuButton) {
+		case (MenuButtonState.kQuit):
+			Application.Quit();
+			break;
 		case (MenuButtonState.kMenu):
 			LoadMenu ();
 			break;
